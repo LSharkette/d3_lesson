@@ -18,5 +18,4 @@ gx = g.append("g")
 gx.call(x_axis);
 gx.attr("transform", "translate(0,400)");
 
-circle = g.append("circle");
-circle.attr("cx", x(2000)).attr("cy", y(92)).attr("r", 10);
+// Okay, now all of your axes are set up.  Add code to draw points here.
