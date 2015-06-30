@@ -18,41 +18,29 @@ gx = g.append("g")
 gx.call(x_axis);
 gx.attr("transform", "translate(0,400)");
 
-circle = g.append("circle");
-circle.attr("cx", x(2000)).attr("cy", y(92)).attr("r", 6);
+d3.csv("old_discoveries.csv", function(data) {
+  g.selectAll("circle")
+      .data(data)
+    .enter().append("circle")
+      .attr("cx", function(d) {return x(d["year"]);} )
+      .attr("cy", function(d) {return y(d["important_discoveries"]);} )
+      .attr("r", 6);
+});
 
-circle = g.append("circle");
-circle.attr("cx", x(2001)).attr("cy", y(90)).attr("r", 6);
+function updateDiscoveries() {
+  d3.csv("new_discoveries.csv", function(data) {
+    join = g.selectAll("circle")
+        .data(data);
 
-circle = g.append("circle");
-circle.attr("cx", x(2002)).attr("cy", y(87)).attr("r", 6);
+    join.attr("cx", function(d) {return x(d["year"]);} )
+        .attr("cy", function(d) {return y(d["important_discoveries"]);} );
 
-circle = g.append("circle");
-circle.attr("cx", x(2003)).attr("cy", y(86)).attr("r", 6);
+    join.enter().append("circle")
+        .attr("cx", function(d) {return x(d["year"]);} )
+        .attr("cy", function(d) {return y(d["important_discoveries"]);} );
 
-circle = g.append("circle");
-circle.attr("cx", x(2004)).attr("cy", y(90)).attr("r", 6);
+    join.exit().remove();
+  });
+}
 
-circle = g.append("circle");
-circle.attr("cx", x(2005)).attr("cy", y(82)).attr("r", 6);
-
-circle = g.append("circle");
-circle.attr("cx", x(2006)).attr("cy", y(80)).attr("r", 6);
-
-circle = g.append("circle");
-circle.attr("cx", x(2007)).attr("cy", y(92)).attr("r", 6);
-
-circle = g.append("circle");
-circle.attr("cx", x(2008)).attr("cy", y(82)).attr("r", 6);
-
-circle = g.append("circle");
-circle.attr("cx", x(2009)).attr("cy", y(78)).attr("r", 6);
-
-circle = g.append("circle");
-circle.attr("cx", x(2010)).attr("cy", y(77)).attr("r", 6);
-
-circle = g.append("circle");
-circle.attr("cx", x(2011)).attr("cy", y(78)).attr("r", 6);
-
-circle = g.append("circle");
-circle.attr("cx", x(2012)).attr("cy", y(77)).attr("r", 6);
+document.getElementById("update_button").onclick = updateDiscoveries;
