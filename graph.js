@@ -24,7 +24,7 @@ d3.csv("old_discoveries.csv", function(data) {
     .enter().append("circle")
       .attr("cx", function(d) {return x(d["year"]);} )
       .attr("cy", function(d) {return y(d["important_discoveries"]);} )
-      .attr("r", 6);
+      .attr("r", 10);
 });
 
 function updateDiscoveries() {
