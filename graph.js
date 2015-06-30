@@ -18,29 +18,5 @@ gx = g.append("g")
 gx.call(x_axis);
 gx.attr("transform", "translate(0,400)");
 
-d3.csv("old_discoveries.csv", function(data) {
-  g.selectAll("circle")
-      .data(data)
-    .enter().append("circle")
-      .attr("cx", function(d) {return x(d["year"]);} )
-      .attr("cy", function(d) {return y(d["important_discoveries"]);} )
-      .attr("r", 10);
-});
-
-function updateDiscoveries() {
-  d3.csv("new_discoveries.csv", function(data) {
-    join = g.selectAll("circle")
-        .data(data);
-
-    join.attr("cx", function(d) {return x(d["year"]);} )
-        .attr("cy", function(d) {return y(d["important_discoveries"]);} );
-
-    join.enter().append("circle")
-        .attr("cx", function(d) {return x(d["year"]);} )
-        .attr("cy", function(d) {return y(d["important_discoveries"]);} );
-
-    join.exit().remove();
-  });
-}
-
-document.getElementById("update_button").onclick = updateDiscoveries;
+circle = g.append("circle");
+circle.attr("cx", x(2000)).attr("cy", y(92)).attr("r", 10);
