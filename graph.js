@@ -3,10 +3,10 @@ g = svg.append("g");
 g.attr("transform", "translate(100,50)");
 
 x = d3.scale.linear()
-    .domain([2000, 2012])
+    .domain([ , ])  // Fill in the domain values for the x axis
     .range([0, 800]);
 y = d3.scale.linear()
-    .domain([0, 100])
+    .domain([ , ])  // Fill in the domain values for the y axis
     .range([400, 0]);
 
 x_axis = d3.svg.axis().scale(x).orient("bottom").ticks(5).tickFormat(d3.format("d"));
